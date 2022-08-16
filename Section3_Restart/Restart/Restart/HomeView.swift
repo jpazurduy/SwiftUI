@@ -44,6 +44,7 @@ struct HomeView: View {
             
             Button(action: {
                 withAnimation(Animation.easeInOut(duration: 1), {
+                    AudioPlayer.playSound(sound: "success", type: "m4a")
                     isOnboardingActive = true
                 })
             }, label: {
