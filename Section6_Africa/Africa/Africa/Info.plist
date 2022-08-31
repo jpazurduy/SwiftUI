@@ -5,9 +5,9 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>lunch-screen-color</string>
+		<string>launch-screen-color</string>
 		<key>UIImageName</key>
-		<string>lunch-screen-image</string>
+		<string>launch-screen-image</string>
 	</dict>
 </dict>
 </plist>
