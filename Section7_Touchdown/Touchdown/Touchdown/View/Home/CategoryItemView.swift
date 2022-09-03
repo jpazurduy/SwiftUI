@@ -17,12 +17,14 @@ struct CategoryItemView: View {
             
         }, label: {
             HStack(alignment: .center, spacing: 6) {
+                Spacer()
                 Image(category.image)
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30, alignment: .center)
                     .foregroundColor(.gray)
+                
                 Text(category.name.uppercased())
                     .fontWeight(.light)
                     .foregroundColor(.gray)
