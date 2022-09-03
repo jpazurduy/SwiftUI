@@ -34,7 +34,11 @@ struct ContentView: View {
                         
                         LazyVGrid(columns: gridLayout, alignment: .center, spacing: 15, pinnedViews: []) {
                             ForEach(products) { product in
-                                ProductItemView(product: product)
+                                NavigationLink(destination: {
+                                    ProductDetailView()
+                                }, label: {
+                                    ProductItemView(product: product)
+                                })
                             }
                         } // LazyVGrid
                         .padding()
