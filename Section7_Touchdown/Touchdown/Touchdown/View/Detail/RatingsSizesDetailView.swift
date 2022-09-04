@@ -35,17 +35,21 @@ struct RatingsSizesDetailView: View {
                     }
                 }
             }
-            // SIZES
             
+            Spacer()
+            
+            // SIZES
             VStack(alignment: .trailing, spacing: 3) {
                 Text("Sizes")
                     .font(.footnote)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(colorGray)
                 
                 HStack(alignment: .center, spacing: 5) {
                     ForEach(sizes, id: \.self) { size in
-                        Button(action: {}, label: {
+                        Button(action: {
+                            
+                        }, label: {
                             Text(size)
                                 .font(.footnote)
                                 .fontWeight(.heavy)
@@ -59,7 +63,7 @@ struct RatingsSizesDetailView: View {
                         })
                     }
                 }
-            Spacer()
+            }
         }
     }
 }
