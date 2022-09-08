@@ -19,6 +19,7 @@
 		7FEFAB6928C83D250078F00D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEFAB6828C83D250078F00D /* Constant.swift */; };
 		7FEFAB6B28C83F9C0078F00D /* ChildButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEFAB6A28C83F9C0078F00D /* ChildButton.swift */; };
 		7FEFAB6D28C8474B0078F00D /* Hidekeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEFAB6C28C8474B0078F00D /* Hidekeyboard.swift */; };
+		7FEFAB6F28C863170078F00D /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEFAB6E28C863170078F00D /* BackgroundImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7FEFAB6828C83D250078F00D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FEFAB6A28C83F9C0078F00D /* ChildButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildButton.swift; sourceTree = "<group>"; };
 		7FEFAB6C28C8474B0078F00D /* Hidekeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidekeyboard.swift; sourceTree = "<group>"; };
+		7FEFAB6E28C863170078F00D /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				7FEFAB4A28C82E9E0078F00D /* ContentView.swift */,
 				7FEFAB6A28C83F9C0078F00D /* ChildButton.swift */,
+				7FEFAB6E28C863170078F00D /* BackgroundImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			files = (
 				7FEFAB6B28C83F9C0078F00D /* ChildButton.swift in Sources */,
 				7FEFAB5228C82EA00078F00D /* Persistence.swift in Sources */,
+				7FEFAB6F28C863170078F00D /* BackgroundImageView.swift in Sources */,
 				7FEFAB4B28C82E9E0078F00D /* ContentView.swift in Sources */,
 				7FEFAB6928C83D250078F00D /* Constant.swift in Sources */,
 				7FEFAB5528C82EA00078F00D /* Devote.xcdatamodeld in Sources */,
