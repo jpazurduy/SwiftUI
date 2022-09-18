@@ -20,4 +20,4 @@ var backgroundGradient :LinearGradient {
     return LinearGradient(gradient: Gradient(colors: [.pink, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
 }
 // MARK: - UX
-
+let feedback = UINotificationFeedbackGenerator()
