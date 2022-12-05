@@ -12,7 +12,20 @@
 		<key>Stickers.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7F080B2F28B67B4D00CDEA5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7F41B19F28C04C5F00150756</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

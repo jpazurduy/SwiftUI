@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct AvocadosApp: App {
+    @StateObject var launchScreenManager = LaunchScreenManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                AppView()
+                
+                if launchScreenManager.state != .completed {
+                    LaunchScreen()
+                }
+            }
+            .environmentObject(launchScreenManager)
         }
     }
 }
