@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     // MARK: - PROPERTIES
     var headers: [Header] = headersData
+    var facts: [Fact] = factsData
+    var recipies: [Recipe] = recipesData
     
     // MARK: - BODY
     var body: some View {
@@ -32,7 +34,28 @@ struct ContentView: View {
             DishesView()
                 .frame(maxWidth: 640)
                 .padding(.horizontal, 40)
-                .padding(.vertical, 10)
+                .padding(.vertical, 15)
+            
+            // MARK: - AVOCADO FACTS
+           
+                Text("Avocado Facts")
+                    .fontWeight(.bold)
+                    .modifier(TitleModifier())
+                FactsView()
+            
+            // MARK: - AVOCADO RECIPIES
+           
+                Text("Avocado Recipies")
+                    .fontWeight(.bold)
+                    .modifier(TitleModifier())
+            
+            LazyVStack(alignment: .center, spacing: 20) {
+                ForEach(recipies) { recipie in
+                    RecipeCardView(recipe: recipie)
+                }
+            }
+            .frame(maxWidth: 640)
+            .padding(.horizontal)
             
             // MARK: - FOOTER
             VStack(alignment: .center, spacing: 20) {
@@ -67,7 +90,7 @@ struct TitleModifier: ViewModifier {
 // MARK: - PREVIEW
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(headers: headersData)
+        ContentView(headers: headersData, facts: factsData, recipies: recipesData)
             //.environment(\.colorScheme, .dark)
     }
 }
