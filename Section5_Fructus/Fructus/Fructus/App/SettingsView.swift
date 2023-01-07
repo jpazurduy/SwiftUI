@@ -57,11 +57,10 @@ struct SettingsView: View {
                             }
                         }
                         .padding()
-                        .background(
-                            Color(UIColor.tertiarySystemBackground))
+                        .background(Color(UIColor.tertiarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }, label: {
-                        SettingLabelView(labelText: "Custoomizatin", labelImage: "paintbrush")
+                        SettingLabelView(labelText: "Custoomization", labelImage: "paintbrush")
                     })
                     
                     // MARK: - SECTION 3

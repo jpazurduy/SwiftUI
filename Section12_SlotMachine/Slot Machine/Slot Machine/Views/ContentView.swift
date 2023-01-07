@@ -9,8 +9,93 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: - PROPERTIES
+    
     @State private var isBetTen: Bool = true
+    @State private var isBetTwenty: Bool = true
     @State private var showingInfoView: Bool = false
+    
+    let symbols = ["gfx-bell",
+                   "gfx-cherry",
+                   "gfx-coin",
+                   "gfx-grape",
+                   "gfx-seven",
+                   "gfx-strawberry"]
+    
+    @State private var reels: [Int] = [0,1,2]
+    @State private var highScore = UserDefaults.standard.integer(forKey: "HighScore")
+    @State private var coins = 100
+    @State private var betAmount = 10
+    @State private var showingModal: Bool = false
+    
+    @State private var animatingSymbols: Bool = false
+    // MARK: - FUNCTIONS
+    
+    // SPIN THE REELS
+    func spinReels() {
+//        reels[0] = Int.random(in: 0...symbols.count-1)
+//        reels[1] = Int.random(in: 0...symbols.count-1)
+//        reels[2] = Int.random(in: 0...symbols.count-1)
+        
+        reels = reels.map({ _ in
+            Int.random(in: 0...symbols.count-1)
+        })
+    }
+    // CHECK THE WINNING
+    func checkWinning() {
+        if reels[0] == reels[1] && reels[1] == reels[2] && reels[0] == reels[2] {
+            // PLAYER WINS
+            playerWins()
+            // NEW HIGH SCORE
+            
+            if coins > highScore {
+                newHighScore()
+            }
+        } else {
+            // PLAYER LOOES
+            playerLoses()
+        }
+    }
+    // PLAYER WINS
+    
+    func playerWins() {
+        coins += betAmount*10
+    }
+    // NEW HIGHSCORE
+    
+    func newHighScore() {
+        highScore = coins
+        UserDefaults.standard.set(highScore, forKey: "HighScore")
+    }
+    // PLAYER LOSES
+    func playerLoses() {
+        coins -= betAmount
+    }
+    
+    func activateBet10() {
+        betAmount = 10
+        isBetTen = true
+        isBetTwenty = false
+    }
+    
+    func activateBet20() {
+        betAmount = 20
+        isBetTen = false
+        isBetTwenty = true
+    }
+    // GAME IS OVER
+    func isGameOver() {
+        if coins <= 0 {
+            showingModal = true
+        }
+    }
+    
+    func resetGame() {
+        UserDefaults.standard.set(0, forKey: "HighScore")
+        highScore = 0
+        coins = 100
+        activateBet10()
+    }
+    
     // MARK: - BODY
     var body: some View {
         ZStack {
@@ -31,7 +116,7 @@ struct ContentView: View {
                         Text("Your\nCouns".uppercased())
                             .scorLabelStyle()
                             .multilineTextAlignment(.trailing)
-                        Text("100")
+                        Text("\(self.coins)")
                             .scoreNumberStyle()
                             .modifier(ScoreNumberModifier())
                     }
@@ -40,7 +125,7 @@ struct ContentView: View {
                     Spacer()
                     
                     HStack {
-                        Text("200")
+                        Text("\(self.highScore)")
                             .scoreNumberStyle()
                             .modifier(ScoreNumberModifier())
                         Text("High\nScore".uppercased())
@@ -56,33 +141,71 @@ struct ContentView: View {
                     // MARK: - REEL #1
                     ZStack {
                         RealView()
-                        Image("gfx-bell")
+                        Image(symbols[reels[0]])
                             .resizable()
                             .modifier(ImageModifier())
+                            .opacity(animatingSymbols ? 1:0)
+                            .offset(y: animatingSymbols ? 0: -50)
+                            .onAppear() {
+                                withAnimation(.easeOut(duration: Double.random(in: 0.5...0.7))) {
+                                    self.animatingSymbols.toggle()
+                                }
+                                
+                            }
                     }
                     
                     HStack(alignment: .center, spacing: 0) {
                         // MARK: - REEL #2
                         ZStack {
                             RealView()
-                            Image("gfx-seven")
+                            Image(symbols[reels[1]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbols ? 1:0)
+                                .offset(y: animatingSymbols ? 0: -50)
+                                .onAppear() {
+                                    withAnimation(.easeOut(duration: Double.random(in: 0.5...0.7))) {
+                                        self.animatingSymbols.toggle()
+                                    }
+                                }
                         }
                         Spacer()
                         // MARK: - REEL #3
                         ZStack {
                             RealView()
-                            Image("gfx-cherry")
+                            Image(symbols[reels[2]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbols ? 1:0)
+                                .offset(y: animatingSymbols ? 0: -50)
+                                .onAppear() {
+                                    withAnimation(.easeOut(duration: Double.random(in: 0.5...0.7))) {
+                                        self.animatingSymbols.toggle()
+                                    }
+                                }
                         }
                     }
                     .frame(maxWidth: 720)
                     
                     // MARK: - SPIN BUTTON
                     Button(action: {
-                        print("Spin")
+                        // NO ANIMATION
+                        withAnimation {
+                            self.animatingSymbols = false
+                        }
+                        // SPIN
+                        self.spinReels()
+                        
+                        // TRIGGER ANIMATION
+                        withAnimation {
+                            self.animatingSymbols = true
+                        }
+                        
+                        // CHECK THE WINNING
+                        self.checkWinning()
+                        
+                        // GAME OVER
+                        self.isGameOver()
                     }, label: {
                         Image("gfx-spin")
                             .resizable()
@@ -91,13 +214,11 @@ struct ContentView: View {
                 }
                 .layoutPriority(2)
                 
-                
                 // MARK: - FOOTER
                 Spacer()
                 HStack {
                     Button(action: {
-                        print("Bet 10")
-                            isBetTen = true
+                        self.activateBet10()
                     }, label: {
                         Text("10")
                             .fontWeight(.heavy)
@@ -113,38 +234,34 @@ struct ContentView: View {
                             .opacity(isBetTen ? 1 : 0)
                             .frame(height: 64)
                             .modifier(ShadowModifier())
-                        
                     })
                     Spacer()
                     Button(action: {
-                        isBetTen = false
+                        self.activateBet20()
+                        
                     }, label: {
                         Image("gfx-casino-chips")
                             .resizable()
                             .scaledToFit()
-                            .opacity(isBetTen ? 0 : 1)
+                            .opacity(isBetTwenty ? 1 : 0)
                             .frame(height: 64)
                             .modifier(ShadowModifier())
                         Text("20")
                             .fontWeight(.heavy)
-                            .foregroundColor(isBetTen ? .white : .yellow)
+                            .foregroundColor(isBetTwenty ? .yellow : .white)
                             .font(.system(.title, design: .rounded))
                             .padding(.vertical, 5)
                             .frame(width: 90)
                             .shadow(color: Color("ColorTransparenctBlack"), radius: 0, x: 0, y: 3)
                             .modifier(BetCapsuleModifier())
-                        
-                        
                     })
                 }
-                
-                
             }
             // MARK: - BUTTONS
             .overlay(
                 // RESET
                 Button(action: {
-                    print("reset the game")
+                    self.resetGame()
                 }, label: {
                     Image(systemName: "arrow.2.circlepath.circle")
                         .modifier(ButtonModifier())
@@ -161,6 +278,68 @@ struct ContentView: View {
                 , alignment: .topTrailing)
             .padding()
             .frame(maxWidth: 720)
+            .blur(radius: $showingModal.wrappedValue ? 5 : 0, opaque: false)
+            
+            // MARK: - POPUP
+            if $showingModal.wrappedValue {
+                ZStack {
+                    Color("ColorTransparentBlack")
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    VStack(alignment: .center, spacing: 0) {
+                        Text("Game Over")
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(Color("AccentColor"))
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .center, spacing: 16) {
+                            Image("gfx-seven-reel")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 72)
+                            
+                            Text("Bad luck you lost allof the coins.")
+                                .font(.system(.body, design: .rounded))
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.gray)
+                                .layoutPriority(1)
+                            
+                            Button(action: {
+                                self.showingModal = false
+                                self.coins = 100
+                                self.activateBet10()
+                            }, label: {
+                                Text("New Game".uppercased())
+                                    .font(.system(.body, design: .rounded))
+                                    .fontWeight(.semibold)
+                                    .padding(.horizontal,12)
+                                    .padding(.vertical, 8)
+                                    .frame(minWidth: 128)
+                                    .background(
+                                        Capsule()
+                                            .strokeBorder(lineWidth: 1.75)
+                                            .foregroundColor(Color("AccentColor"))
+                                    )
+                            })
+                        }
+                                                
+                        Spacer()
+                        
+                        
+                    }
+                    .frame(minWidth: 280, idealWidth: 280, maxWidth: 320,
+                           minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: .center)
+                    .background(.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 0)
+                }
+            }
         }
         .sheet(isPresented: $showingInfoView) {
             InfoView()
