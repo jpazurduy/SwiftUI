@@ -28,6 +28,9 @@ struct ContentView: View {
     @State private var showingModal: Bool = false
     
     @State private var animatingSymbols: Bool = false
+    @State private var animatingModal: Bool = false
+    let haptics = UINotificationFeedbackGenerator()
+    
     // MARK: - FUNCTIONS
     
     // SPIN THE REELS
@@ -39,6 +42,8 @@ struct ContentView: View {
         reels = reels.map({ _ in
             Int.random(in: 0...symbols.count-1)
         })
+        
+        playSound(sound: "spin", type: "mp3")
     }
     // CHECK THE WINNING
     func checkWinning() {
@@ -49,6 +54,8 @@ struct ContentView: View {
             
             if coins > highScore {
                 newHighScore()
+            } else {
+                playSound(sound: "win", type: "mp3")
             }
         } else {
             // PLAYER LOOES
@@ -65,6 +72,7 @@ struct ContentView: View {
     func newHighScore() {
         highScore = coins
         UserDefaults.standard.set(highScore, forKey: "HighScore")
+        playSound(sound: "high-score", type: "mp3")
     }
     // PLAYER LOSES
     func playerLoses() {
@@ -75,17 +83,22 @@ struct ContentView: View {
         betAmount = 10
         isBetTen = true
         isBetTwenty = false
+        playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     func activateBet20() {
         betAmount = 20
         isBetTen = false
         isBetTwenty = true
+        playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     // GAME IS OVER
     func isGameOver() {
         if coins <= 0 {
             showingModal = true
+            playSound(sound: "game-over", type: "mp3")
         }
     }
     
@@ -231,6 +244,7 @@ struct ContentView: View {
                         Image("gfx-casino-chips")
                             .resizable()
                             .scaledToFit()
+                            .offset(x: isBetTen ? 0: -20)
                             .opacity(isBetTen ? 1 : 0)
                             .frame(height: 64)
                             .modifier(ShadowModifier())
@@ -314,6 +328,7 @@ struct ContentView: View {
                                 self.showingModal = false
                                 self.coins = 100
                                 self.activateBet10()
+                                self.animatingModal = false
                             }, label: {
                                 Text("New Game".uppercased())
                                     .font(.system(.body, design: .rounded))
@@ -338,8 +353,18 @@ struct ContentView: View {
                     .background(.white)
                     .cornerRadius(20)
                     .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 0)
+                    .opacity($animatingModal.wrappedValue ? 1 : 0)
+                    .offset(y: $animatingModal.wrappedValue ? 0 : -100)
+                    .onAppear() {
+                        withAnimation(.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0)) {
+                            self.animatingModal = true
+                        }
+                    }
                 }
             }
+        }
+        .onAppear() {
+            self.activateBet10()
         }
         .sheet(isPresented: $showingInfoView) {
             InfoView()

@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6F682816-2805-4ED1-8693-2359A1BCF070"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slot Machine/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "newHighScore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -24,6 +24,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "51F7F277-BA35-4FE7-876D-C7B380E4D751"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slot Machine/Views/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "checkWinning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "298AAD46-9D73-4CBD-9C75-72F6AAB85E01"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -39,17 +55,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "298AAD46-9D73-4CBD-9C75-72F6AAB85E01"
+            uuid = "0FF105B5-3E2F-404E-9F04-D839C53D2D90"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slot Machine/Helpers/PlaySound.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "playSound(sound:type:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB2437E1-4B9C-4EBF-BD08-08E38835D121"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slot Machine/Helpers/PlaySound.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "playSound(sound:type:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4D08C82-0F28-4A06-8A8B-90293ABE9122"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slot Machine/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "checkWinning()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "spinReels()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44E1CC1D-CBFF-4EA6-BEB3-DDFEE6C2FCA3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Slot Machine/Helpers/PlaySound.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "playSound(sound:type:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "44E1CC1D-CBFF-4EA6-BEB3-DDFEE6C2FCA3 - df3105be63742697"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slot_Machine.playSound(sound: Swift.String, type: Swift.String) -&gt; ()"
+                  moduleName = "Slot Machine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jpazurduy/Desktop/SwiftUITraining/Section12_SlotMachine/Slot%20Machine/Slot%20Machine/Helpers/PlaySound.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "433">
+               </Location>
+               <Location
+                  uuid = "44E1CC1D-CBFF-4EA6-BEB3-DDFEE6C2FCA3 - df3105be63742697"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Slot_Machine.playSound(sound: Swift.String, type: Swift.String) -&gt; ()"
+                  moduleName = "Slot Machine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jpazurduy/Desktop/SwiftUITraining/Section12_SlotMachine/Slot%20Machine/Slot%20Machine/Helpers/PlaySound.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "703">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
