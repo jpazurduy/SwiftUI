@@ -13,84 +13,102 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Todo.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var todos: FetchedResults<Todo>
     
     @State private var showAddTodoView: Bool = false
-
+    @State private var animatingButton: Bool = false
     // MARK: - BODY
     var body: some View {
-//        NavigationView {
-//            List {
-//                ForEach(items) { item in
-//                    NavigationLink {
-//                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-//                    } label: {
-//                        Text(item.timestamp!, formatter: itemFormatter)
-//                    }
-//                }
-//                .onDelete(perform: deleteItems)
-//            }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    EditButton()
-//                }
-//                ToolbarItem {
-//                    Button(action: addItem) {
-//                        Label("Add Item", systemImage: "plus")
-//                    }
-//                }
-//            }
-//            Text("Select an item")
-//        }
         
         NavigationView {
-            List(0..<5) { item in
-                Text("Hello work")
-            } // LIST
+            ZStack {
+                List {
+                    ForEach(self.todos, id: \.self)  { todo in
+                        HStack {
+                            Text(todo.name ?? " Unknown")
+                                .font(.body)
+                            
+                            Spacer()
+                            
+                            Text(todo.priority ?? "Unknown")
+                                .font(.body)
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                    .onDelete(perform: deleteTodo)
+                } //LIST
+                
+                // MARK: - NO TODO ITEMS
+                if todos.count == 0 {
+                    EmptyListView()
+                        .padding(.top, 30)
+                }
+            } // ZSTACK
             .navigationBarTitle("Todo", displayMode: .inline)
-            .navigationBarItems(trailing:
-            Button(action: {
-                self.showAddTodoView.toggle()
-            }, label: {
-                Image(systemName: "plus")
-            })
+            .navigationBarItems(leading: EditButton(), trailing:
+                Button(action: {
+                    self.showAddTodoView.toggle()
+                }, label: {
+                    Image(systemName: "plus")
+                })
             )
             .sheet(isPresented: $showAddTodoView) {
                 AddTodoView()
+                    .environment(\.managedObjectContext, self.viewContext)
             }
-        }
+            .sheet(isPresented: $showAddTodoView) {
+                AddTodoView()
+                    .environment(\.managedObjectContext, self.viewContext)
+            }
+            .overlay(
+                ZStack {
+                    Group {
+                        Circle()
+                            .fill(Color(.blue))
+                            .opacity(self.animatingButton ? 0.2 : 0)
+                            .scaleEffect(self.animatingButton ? 1 : 0)
+                            .frame(width: 68, height: 68, alignment: .center)
+                        Circle()
+                            .fill(Color.blue)
+                            .opacity(self.animatingButton ?  0.15 : 0)
+                            .scaleEffect(self.animatingButton ? 1 : 0)
+                            .frame(width: 88, height: 88, alignment: .center)
+                    }
+
+                    Button(action: {
+                        self.showAddTodoView.toggle()
+                    }, label: {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .background(
+                                Circle()
+                                    .fill(Color("ColorBase")))
+                            .frame(width: 48, height: 48, alignment: .center)
+                    })
+                    
+                } //  ZSTACK
+                .padding(.bottom, 15)
+                .padding(.trailing, 15)
+                , alignment: .bottomTrailing)
+            .onAppear() {
+                withAnimation(.easeOut(duration: 2).repeatForever(autoreverses: true)) {
+                    self.animatingButton.toggle()
+                }
+            }
+        } // NAVIGATIOON
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    
+    
+    // MARK: - FUNCTIONS
+    private func deleteTodo(at offsets :IndexSet) {
+        for index in offsets {
+            let todo = todos[index]
+            viewContext.delete(todo)
+            
+            PersistenceController.updateContext()
         }
     }
 }
@@ -104,6 +122,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
