@@ -18,87 +18,76 @@ struct ContentView: View {
     private var todos: FetchedResults<Todo>
     
     @State private var showAddTodoView: Bool = false
-    @State private var animatingButton: Bool = false
+    
+    @State private var showingSettingsView: Bool = false
+    
+    // THEME
+    let themes: [Theme] = themeData
+    @ObservedObject var theme = ThemeSettings.shared
+    
     // MARK: - BODY
     var body: some View {
         
         NavigationView {
             ZStack {
-                List {
-                    ForEach(self.todos, id: \.self)  { todo in
-                        HStack {
-                            Text(todo.name ?? " Unknown")
-                                .font(.body)
-                            
-                            Spacer()
-                            
-                            Text(todo.priority ?? "Unknown")
-                                .font(.body)
-                        }
-                        .padding(.horizontal, 20)
-                    }
-                    .onDelete(perform: deleteTodo)
-                } //LIST
-                
                 // MARK: - NO TODO ITEMS
                 if todos.count == 0 {
                     EmptyListView()
                         .padding(.top, 30)
+                } else {
+                    List {
+                        ForEach(self.todos, id: \.self)  { todo in
+                            HStack {
+                                Circle()
+                                    .frame(width: 12, height: 12, alignment: .center)
+                                    .foregroundColor(self.colorize(priority: todo.priority ?? Priority.normal.rawValue))
+                                Text(todo.name ?? " Unknown")
+                                    .font(.body)
+                                    .fontWeight(.semibold)
+                                
+                                Spacer()
+                                
+                                Text(todo.priority ?? "Unknown")
+                                    .font(.body)
+                                    .foregroundColor(Color(UIColor.systemGray2))
+                                    .padding(3)
+                                    .frame(minWidth: 72)
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(Color(UIColor.systemGray2), lineWidth: 0.75)
+                                    )
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                        .onDelete(perform: deleteTodo)
+                    } //LIST
                 }
             } // ZSTACK
             .navigationBarTitle("Todo", displayMode: .inline)
-            .navigationBarItems(leading: EditButton(), trailing:
+            .navigationBarItems(
+                leading:
+                    EditButton()
+                    .accentColor(themes[self.theme.themeSettings].themeColor),
+                trailing:
                 Button(action: {
-                    self.showAddTodoView.toggle()
+                    self.showingSettingsView.toggle()
                 }, label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "paintbrush")
+                        .foregroundColor(themes[self.theme.themeSettings].themeColor)
                 })
             )
-            .sheet(isPresented: $showAddTodoView) {
-                AddTodoView()
-                    .environment(\.managedObjectContext, self.viewContext)
+            .zIndex(1)
+            .overlay(FloatingButtonView(showAddTodoView: $showAddTodoView), alignment: .bottomTrailing)
+            .sheet(isPresented: $showingSettingsView) {
+                SettingsView()
             }
             .sheet(isPresented: $showAddTodoView) {
                 AddTodoView()
                     .environment(\.managedObjectContext, self.viewContext)
             }
-            .overlay(
-                ZStack {
-                    Group {
-                        Circle()
-                            .fill(Color(.blue))
-                            .opacity(self.animatingButton ? 0.2 : 0)
-                            .scaleEffect(self.animatingButton ? 1 : 0)
-                            .frame(width: 68, height: 68, alignment: .center)
-                        Circle()
-                            .fill(Color.blue)
-                            .opacity(self.animatingButton ?  0.15 : 0)
-                            .scaleEffect(self.animatingButton ? 1 : 0)
-                            .frame(width: 88, height: 88, alignment: .center)
-                    }
-
-                    Button(action: {
-                        self.showAddTodoView.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .background(
-                                Circle()
-                                    .fill(Color("ColorBase")))
-                            .frame(width: 48, height: 48, alignment: .center)
-                    })
-                    
-                } //  ZSTACK
-                .padding(.bottom, 15)
-                .padding(.trailing, 15)
-                , alignment: .bottomTrailing)
-            .onAppear() {
-                withAnimation(.easeOut(duration: 2).repeatForever(autoreverses: true)) {
-                    self.animatingButton.toggle()
-                }
-            }
+            
         } // NAVIGATIOON
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     
@@ -110,6 +99,20 @@ struct ContentView: View {
             
             PersistenceController.updateContext()
         }
+    }
+    
+    private func colorize(priority: String) -> Color {
+        switch priority {
+            case Priority.high.rawValue:
+                return .pink
+            case Priority.normal.rawValue:
+                return .green
+            case Priority.low.rawValue:
+                return .blue
+            default:
+                return .gray
+        }
+        
     }
 }
 

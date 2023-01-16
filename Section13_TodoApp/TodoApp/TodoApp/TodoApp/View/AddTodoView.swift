@@ -25,6 +25,10 @@ struct AddTodoView: View {
     @State private var errorTitle :String = ""
     @State private var errorMessage :String = ""
     
+    // THEME
+    let themes: [Theme] = themeData
+    @ObservedObject var theme = ThemeSettings.shared
+    
     // MARK: - BODY
     var body: some View {
         NavigationView {
@@ -65,7 +69,7 @@ struct AddTodoView: View {
                             .font(.system(size: 24, weight: .bold, design: .default))
                             .padding()
                             .frame(minWidth: 0,maxWidth: .infinity)
-                            .background(.blue)
+                            .background(themes[self.theme.themeSettings].themeColor)
                             .cornerRadius(9)
                             .foregroundColor(.white)
                     })
@@ -87,6 +91,8 @@ struct AddTodoView: View {
             
             }
         } // NavigationView
+        .navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(themes[self.theme.themeSettings].themeColor)
         
     }
 }

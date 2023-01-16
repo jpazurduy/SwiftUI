@@ -13,6 +13,7 @@
 		7F0D8762297095FD00BD2E05 /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D8760297095FD00BD2E05 /* ThemeModel.swift */; };
 		7F0D8763297095FD00BD2E05 /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D8761297095FD00BD2E05 /* ThemeData.swift */; };
 		7F0D87652970963200BD2E05 /* ThemeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D87642970963200BD2E05 /* ThemeSettings.swift */; };
+		7F97C4302975A9D80062F551 /* PickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97C42F2975A9D80062F551 /* PickerContentView.swift */; };
 		7FAFFF16296E691600FF339C /* TodoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAFFF15296E691600FF339C /* TodoAppApp.swift */; };
 		7FAFFF18296E691600FF339C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAFFF17296E691600FF339C /* ContentView.swift */; };
 		7FAFFF1A296E691800FF339C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FAFFF19296E691800FF339C /* Assets.xcassets */; };
@@ -21,6 +22,8 @@
 		7FAFFF22296E691800FF339C /* TodoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FAFFF20296E691800FF339C /* TodoApp.xcdatamodeld */; };
 		7FAFFF2A296E6A5000FF339C /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAFFF29296E6A5000FF339C /* AddTodoView.swift */; };
 		7FE0F419296FA4E90068192A /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0F418296FA4E90068192A /* EmptyListView.swift */; };
+		7FF2EEC42971B64300DCE925 /* FloatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2EEC32971B64300DCE925 /* FloatingButtonView.swift */; };
+		7FF2EEC72971E80600DCE925 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2EEC62971E80600DCE925 /* IconNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,7 @@
 		7F0D8760297095FD00BD2E05 /* ThemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
 		7F0D8761297095FD00BD2E05 /* ThemeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
 		7F0D87642970963200BD2E05 /* ThemeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeSettings.swift; sourceTree = "<group>"; };
+		7F97C42F2975A9D80062F551 /* PickerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerContentView.swift; sourceTree = "<group>"; };
 		7FAFFF12296E691600FF339C /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAFFF15296E691600FF339C /* TodoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAppApp.swift; sourceTree = "<group>"; };
 		7FAFFF17296E691600FF339C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		7FAFFF29296E6A5000FF339C /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		7FE0F417296FA3810068192A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7FE0F418296FA4E90068192A /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		7FF2EEC32971B64300DCE925 /* FloatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonView.swift; sourceTree = "<group>"; };
+		7FF2EEC62971E80600DCE925 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		7FAFFF14296E691600FF339C /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
+				7FF2EEC52971E7F600DCE925 /* Helpers */,
 				7F0D875F297095F300BD2E05 /* Theme */,
 				7FE0F417296FA3810068192A /* Info.plist */,
 				7FAFFF15296E691600FF339C /* TodoAppApp.swift */,
@@ -111,8 +118,18 @@
 				7F0D875929706BF400BD2E05 /* SettingsView.swift */,
 				7F0D875B297070CD00BD2E05 /* FormRowStaticView.swift */,
 				7F0D875D2970721700BD2E05 /* FormRowLinkView.swift */,
+				7FF2EEC32971B64300DCE925 /* FloatingButtonView.swift */,
+				7F97C42F2975A9D80062F551 /* PickerContentView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7FF2EEC52971E7F600DCE925 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7FF2EEC62971E80600DCE925 /* IconNames.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,12 +207,15 @@
 				7F0D875E2970721700BD2E05 /* FormRowLinkView.swift in Sources */,
 				7F0D8763297095FD00BD2E05 /* ThemeData.swift in Sources */,
 				7FAFFF1F296E691800FF339C /* Persistence.swift in Sources */,
+				7FF2EEC72971E80600DCE925 /* IconNames.swift in Sources */,
 				7FAFFF18296E691600FF339C /* ContentView.swift in Sources */,
 				7F0D87652970963200BD2E05 /* ThemeSettings.swift in Sources */,
 				7FE0F419296FA4E90068192A /* EmptyListView.swift in Sources */,
 				7FAFFF16296E691600FF339C /* TodoAppApp.swift in Sources */,
 				7F0D8762297095FD00BD2E05 /* ThemeModel.swift in Sources */,
+				7F97C4302975A9D80062F551 /* PickerContentView.swift in Sources */,
 				7FAFFF22296E691800FF339C /* TodoApp.xcdatamodeld in Sources */,
+				7FF2EEC42971B64300DCE925 /* FloatingButtonView.swift in Sources */,
 				7FAFFF2A296E6A5000FF339C /* AddTodoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,9 +349,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,9 +379,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoApp/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
