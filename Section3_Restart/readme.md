@@ -15,6 +15,7 @@ By using multiple movements in the opposite direction (parallax effect) we can a
 
 # App screens
 <img src="Screenshots/1.png" alt="drawing" width="400" heigh="867"/>
+<img src="Screenshots/2.png" alt="drawing" width="400" heigh="867"/>
 <!-- ![](Screenshots/1.png =400x867) -->
 <!-- ![](Screenshots/2.png =400x867)  -->
 
