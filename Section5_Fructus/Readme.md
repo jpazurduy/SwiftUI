@@ -1,3 +1,4 @@
+# Fructus App
 ### Setup
 This project was implemented using XCode 14 and iOS 15 deployment target.
 
