@@ -1,3 +1,4 @@
+# Africa App
 ### Setup
 This project was implemented using XCode 14 and iOS 15 deployment target.
 
@@ -31,6 +32,7 @@ This project was implemented using XCode 14 and iOS 15 deployment target.
   </tr>
    <tr>
     <td><img src="Screenshots/3.png" alt="drawing" width="400" heigh="867" align="center"/></td>
+    <td></td>
     <td><img src="Screenshots/4.png" alt="drawing" width="400" heigh="867" align="center"/></td>
    </tr>
 </table>
