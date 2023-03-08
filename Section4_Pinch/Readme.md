@@ -1,3 +1,7 @@
+# Pinch App
+
+The main learning topic of this short and engaging iOS project is to get familiar with almost every SwiftUI gesture such as long-press gesture, double-tap gesture, drag gesture, and magnification gesture (a gesture that recognizes a magnification motion and tracks the amount of it). The only gesture that we will not cover in this tutorial is the rotation gesture.
+
 ### Setup
 This project was implemented using XCode 14 and iOS 15 deployment target.
 
