@@ -27,7 +27,12 @@ This project was implemented using XCode 14 and iOS 15 deployment target.
     <td><img src="Screenshots/1.png" alt="drawing" width="400" heigh="867" align="center"/></td>
     <td></td>
     <td><img src="Screenshots/2.png" alt="drawing" width="400" heigh="867" align="center"/></td>
-  </tr
+  </tr>
+  <tr>
+    <td><img src="Screenshots/3.jpg" alt="drawing" width="400" heigh="867" align="center"/></td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 
 ### End
