@@ -1,3 +1,8 @@
+
+# Restart App
+
+Show some features and animations with SwiftUI
+
 ### Setup
 This project was implemented using XCode 14 and iOS 15 deployment target.
 
