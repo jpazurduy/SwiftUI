@@ -29,7 +29,7 @@ struct MapAnnotationView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 48, height: 48, alignment: .center)
-            .clipShape(Circle())
+                .clipShape(Circle())
         } // ZStack
         
         .onAppear() {
@@ -47,5 +47,6 @@ struct MapAnnotationView_Previews: PreviewProvider {
         MapAnnotationView(location: locations[0])
             .previewLayout(.sizeThatFits)
             .padding()
+            .preferredColorScheme(.light)
     }
 }
