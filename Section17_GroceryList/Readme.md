@@ -1,4 +1,4 @@
-# WishList App
+# GroceryList App
 
  We’re going to develop an awesome iOS/iPadOS app with SwiftUI in Xcode.
 
@@ -9,11 +9,12 @@ This project was implemented using XCode 26 and iOS 17 deployment target.
 
 ### LEARNING OBJECTIVES
 
-#### - Save objects permanently using SwiftData.
-#### - Retrieve them later
-#### - Alternate App Icons
-#### - Update or delete them
-#### - Automatically keep your UI in sync with your data
+#### - Creating Data Model.
+#### - Previewing Sample Data.
+#### - Deleteing data.
+#### - Updating data.
+#### - Saving data.
+#### - Tipkit Integration
 
 
 # App screens
@@ -27,12 +28,4 @@ This project was implemented using XCode 26 and iOS 17 deployment target.
 </table>
 
 ### End
-
-In simple terms, SwiftData lets you:
-
-Save objects permanently
-
-
-
-U
 
